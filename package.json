@@ -1,0 +1,14 @@
+{
+  "name": "www-spiele",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.21.2",
+    "jquery": "^3.5.1",
+    "portal-vue": "^2.1.7",
+    "vue": "^2.6.12"
+  },
+  "author": "Robin C. Ladiges",
+  "license": "UNLICENSED"
+}

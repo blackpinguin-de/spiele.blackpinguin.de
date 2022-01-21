@@ -1,0 +1,122 @@
+div.system_ort {
+  display         : inline-grid;
+  grid-column-gap : 5px;
+  grid-row-gap    : 20px;
+  text-align      : center;
+}
+
+div.ages {
+  display               : inline-grid;
+  grid-column-gap       : 5px;
+  grid-row-gap          : 10px;
+  grid-template-columns : 50% 50%;
+}
+
+div.ages > * {
+  display    : inline-block;
+  text-align : center;
+}
+
+div.age {
+  position       : relative;
+  display        : inline-block;
+  width          : 60px;
+  height         : 60px;
+  text-align     : center;
+  vertical-align : middle;
+  line-height    : 60px;
+  font-weight    : bold;
+}
+
+div.age > span:first-of-type {
+  content          : ' ';
+  background-color : white;
+  display          : inline-block;
+  position         : absolute;
+  width            : 40px;
+  height           : 40px;
+  transform        : rotate(45deg);
+  border           : 2px solid black;
+  z-index          : 1;
+  left             : 0;
+  right            : 0;
+  top              : 0;
+  bottom           : 0;
+  margin           : auto;
+}
+
+div.age > span:last-of-type {
+  position         : relative;
+  z-index          : 2;
+}
+
+div.age::after {
+  display  : inline-block;
+  position : absolute;
+  height   : 1em;
+  right    : 0.5em;
+  bottom   : 1.2em;
+  z-index  : 3;
+}
+
+div.age.rcl::after {
+  content  : 'R';
+}
+
+div.age.avg::after {
+  content : 'Ø';
+}
+
+.table > thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 4;
+}
+
+.table > thead > tr > th {
+  text-align: center;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+  text-align: center;
+}
+
+.table > tbody > tr > td img {
+  max-width: 230px;
+  max-height: 230px;
+  width: auto;
+  height: auto;
+}
+
+.table > tbody > tr > td img.screen {
+  max-width: 450px;
+}
+
+img.system { height: 40px !important; }
+img.ort    { height: 40px !important; }
+img.age    { height: 60px !important; }
+img.star   { height: 30px !important; }
+
+
+.btn-group-toggle input { display: none; }
+.btn-group-toggle label:not(.active) { opacity: 0.3; }
+
+.form-inline { padding-top: 1rem; }
+
+.form-inline .form-control
+, .form-inline .btn-group-toggle
+, .form-inline .custom-select
+, .form-inline .form-group
+, .form-inline .custom-checkbox {
+  display: inline-block;
+  margin: 0 1rem 1rem 0;
+}
+
+.form-inline .form-group { cursor: pointer; }
+
+@media print { .no-print, .no-print * { display: none !important; } }

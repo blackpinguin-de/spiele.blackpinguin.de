@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <title>Spiele</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="./node_modules/bootstrap-vue/dist/bootstrap-vue.min.css" />
+  <link type="text/css" rel="stylesheet" href="./node_modules/bootstrap-vue/dist/bootstrap-vue-icons.min.css" />
+  <link type="text/css" rel="stylesheet" href="./style.css" />
+  <!--<script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>-->
+  <script src="./node_modules/vue/dist/vue.min.js"></script>
+  <!--<script src="./node_modules/portal-vue/dist/portal-vue.umd.min.js"></script>-->
+  <script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./node_modules/bootstrap-vue/dist/bootstrap-vue.min.js"></script>
+  <script src="./node_modules/bootstrap-vue/dist/bootstrap-vue-icons.min.js"></script>
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+  <script src="./spiele.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Filter -->
+    <b-form inline class="m-2 no-print">
+      <!-- Suche -->
+      <b-form-input type="text" v-model="filter.search" placeholder="Suche..."></b-form-input>
+
+      <!-- PS4 -->
+      <b-form-checkbox v-model="filter.showPS4" button button-variant="light">
+        <img :src="'./img/' + 'PS4' + '.png'" title="PS4" class="system"/>
+      </b-form-checkbox>
+
+      <!-- Switch -->
+      <b-form-checkbox v-model="filter.showSwitch" button button-variant="light">
+        <img :src="'./img/' + 'Switch' + '.png'" title="Switch" class="system"/>
+      </b-form-checkbox>
+
+      <!-- Physisch -->
+      <b-form-checkbox v-model="filter.showPhysical" button button-variant="light">
+        <img :src="'./img/' + 'Physisch' + '.png'" title="Physisch" class="ort"/>
+        <img :src="'./img/' + 'CD' + '.png'" title="Physisch" class="ort"/>
+      </b-form-checkbox>
+
+      <!-- Digital -->
+      <b-form-checkbox v-model="filter.showDigital" button button-variant="light">
+        <img :src="'./img/' + 'Digital' + '.png'" title="Digital" class="ort"/>
+      </b-form-checkbox>
+
+      <!-- Alter -->
+      <b-form-select v-model="filter.age" :options="ages"></b-form-select>
+
+      <b-form-checkbox v-model="filter.ausleihbar">
+        ausleihbar
+      </b-form-checkbox>
+
+      <!-- Empfehlung -->
+      <b-form-group title="Empfehlung">
+        <img
+          v-for="s in maxStars"
+          src="./img/star.png"
+          class="star"
+          @click="filter.stars = (s === filter.stars ? 0 : s)"
+          :style="{ opacity: filter.stars >= s ? 1.0 : 0.3 }"
+        />
+      </b-form-group>
+    </b-form>
+    <b-table
+      :items="items"
+      :fields="fields"
+      :sort-by.sync="order"
+      :sort-compare="compare"
+      striped
+      label-sort-asc=""
+      label-sort-desc=""
+      label-sort-clear=""
+      :filter="filter"
+      :filter-function="filterFunction"
+    >
+      <!-- Empfehlung -->
+      <template #cell(empf)=x>
+        <img v-for="n in x.value" :src="'./img/star.png'" class="star"/>
+        <div class="anmerkung" v-if="x.item.anmerkung">
+          <span v-b-modal="'name-' + x.item.id">
+            <b-icon-info-circle-fill/>
+          </span>
+        </div>
+      </template>
+
+      <!-- System -->
+      <template #cell(system)=x>
+        <div class="system_ort">
+          <div><img :src="'./img/' + x.item.system + '.png'" :title="x.item.system" class="system"/></div>
+          <div><img :src="'./img/' + (x.item.system === 'PS4' ? 'CD' : x.item.ort) + '.png'" :title="x.item.ort" class="ort"/></div>
+        </div>
+      </template>
+
+      <!-- Name / Logo -->
+      <template #cell(name)=x>
+        <img  :src="'./logos/' + x.item.id + '.jpg'"
+              :alt="x.item.name"
+              :title="x.item.name"
+              class="logo"
+              v-b-modal="'name-' + x.item.id"
+        />
+        <b-modal :id="'name-' + x.item.id" :title="x.item.name" hide-footer>
+          {{x.item.anmerkung}}
+        </b-modal>
+      </template>
+
+      <!-- Bild -->
+      <template #cell(image)=x>
+        <a :href="'./screens/' + x.item.id + '.jpg'" target="_blank">
+          <img :src="'./screens/' + x.item.id + '.jpg'" alt="" :title="x.item.name" class="screen" />
+        </a>
+      </template>
+
+      <!-- Altersfreigabe -->
+      <template #head(avg)=x>
+        Altersfreigabe
+        <b-form-select v-model="rating" :options="ratings" @click.native.stop.prevent></b-form-select>
+      </template>
+      <template #cell(avg)=x>
+        <div class="ages">
+          <!-- USK -->
+          <div><img :src="'./img/USK_' + x.item.usk + '.png'" class="age"/></div>
+          <!-- PEGI -->
+          <div><img :src="'./img/PEGI_' + x.item.pegi + '.png'" class="age"/></div>
+          <!-- RCL -->
+          <div>
+            <div class="age rcl" v-if="x.item.rcl">
+              <span :style="'background-color: ' + color(x.item.rcl) + ';'"></span>
+              <span>{{ x.item.rcl }}</span>
+            </div>
+            <div class="age" v-else></div>
+          </div>
+          <!-- Average -->
+          <div><div class="age avg">
+            <span :style="'background-color: ' + color(x.item.avg) + ';'"></span>
+            <span>{{ x.item.avg.toFixed(1) }}</span>
+          </div></div>
+      </template>
+
+      <!-- Ausleihen -->
+      <template #cell(ausleihen)=x>
+        <b-btn v-if="x.value > 0" v-b-modal="'ausleihen-' + x.item.id">
+          ~{{x.value}} €
+          <sup><b-icon-info-circle/></sup>
+        </b-btn>
+
+        <b-modal
+          v-if="x.value > 0"
+          :id="'ausleihen-' + x.item.id"
+          title="Ausleih-Regeln"
+          ok-only
+          ok-title="Ausleihen"
+          :ok-disabled="! rulesChecked"
+          @ok="rent($event, x.item)"
+          @show="rulesChecked = false"
+        >
+          <ol>
+            <li>Es darf nur ein Spiel gleichzeitig ausgeliehen werden.</li>
+            <li>Nur verfügbare Spiele, die man noch neu kaufen kann, dürfen ausgeliehen werden.</li>
+            <li>Bei Verlust oder Beschädigung ist der momentane Neu-Marktwert an mich zu zahlen (vermutlich etwa <code>{{x.value}} €</code> für <code>{{x.item.name}}</code>).</li>
+            <li>Wenn es gerade nicht in der Konsole eingelegt ist, muss das Spiel in dessen Hülle aufbewahrt werden.</li>
+            <li>Das Spiel bleibt Zuhause und wird nirgendwohin mitgenommen.</li>
+            <li>Weiterverliehen ist nicht erlaubt.</li>
+          </ol>
+          <b-alert show>
+            <b-form-checkbox v-model="rulesChecked">
+              Ich bin mit den Regeln einverstanden
+            </b-form-checkbox>
+          </b-alert-show>
+        </b-modal>
+      </template>
+    </b-table>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data() { return {
+        filter: {
+          age          : 9,
+          stars        : 0,
+          search       : '',
+          showPhysical : true,
+          showDigital  : true,
+          showPS4      : true,
+          showSwitch   : true,
+          ausleihbar   : false,
+        },
+        rulesChecked: false,
+        maxStars: 3,
+        ages: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
+          .map(age => ({
+            value: age,
+            text: 'für ' + age + ' Jahre',
+          })),
+        rating: 'avg',
+        ratings: [
+          { value: 'avg',  text: 'Ø' },
+          { value: 'usk',  text: 'USK' },
+          { value: 'pegi', text: 'PEGI' },
+          { value: 'rcl',  text: 'Robin' },
+        ],
+        order: 'avg',
+        fields: [
+          { sortable: true,  key: 'empf', label: 'Empfehlung', sortDirection: 'desc' },
+          { sortable: true,  key: 'system'    },
+          { sortable: true,  key: 'name'      },
+          { sortable: false, key: 'image', label: 'Bild' },
+          { sortable: true,  key: 'avg',  label: 'Altersfreigabe' },
+          { sortable: true,  key: 'ausleihen', sortDirection: 'desc' },
+        ],
+        items: csv.map(l => ({
+          id        : l[0],
+          name      : l[1],
+          system    : l[2],
+          ort       : l[3],
+          ausleihen : l[4],
+          usk       : l[5],
+          pegi      : l[6],
+          rcl       : l[7] || 0,
+          avg       : (l[5] + l[6] + (l[7] || 0)) / ( 2 + ( l[7] ? 1 : 0 )),
+          empf      : l[9],
+          anmerkung : l[10],
+        })),
+      } },
+      computed: {
+        limit() { return (this.filter.age < 6 ? 6 : (this.filter.age < 12 ? 12 : (this.filter.age < 16 ? 16 : 18))) },
+      },
+      methods: {
+        filterFunction(o, f) {
+          return (
+               ((o.rcl || 18) <= f.age)
+            || (o.usk  <= f.age)
+            || (o.pegi <= f.age)
+          ) // mindestens ein Rating erlaubt es
+          && Math.floor(o.avg) <= f.age // Durchschnitt ist verbindlich
+          && (f.age < 12 ? ! [ 55, 78, 96, 103 ].includes(o.id) : true) // VR erst ab 12
+          && (f.showDigital  ? true : (o.ort    !== 'Digital'))
+          && (f.showPhysical ? true : (o.ort    !== 'Physisch'))
+          && (f.showPS4      ? true : (o.system !== 'PS4'))
+          && (f.showSwitch   ? true : (o.system !== 'Switch'))
+          && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase())) : true)
+          && (f.stars <= o.empf)
+          && (f.ausleihbar ? o.ausleihen > 0 : true)
+        },
+        color(num) {
+          const c = 120 - (120 * (num / 18))
+          return 'hsl(' + c + ', 100%, 50%)'
+        },
+        compare(a, b, k) {
+          if (k !== 'avg') { return null }
+          const x = Number(a[this.rating] !== undefined ? a[this.rating] : a.avg)
+          const y = Number(b[this.rating] !== undefined ? b[this.rating] : b.avg)
+          const comp = (x, y) => (x < y ? -1 : (x > y ? +1 : 0))
+          return comp(x, y) || comp(a.avg, b.avg)
+        },
+        toasty(title, msg, opts = {}) {
+          this.$bvToast.toast(msg, {
+            title         : title,
+            autoHideDelay : 5000,
+            appendToast   : true,
+            solid         : true,
+            variant       : 'success',
+            ...opts,
+          })
+        },
+        async rent(ev, item) {
+          ev.preventDefault()
+          try {
+            const { data } = await axios.get('./rent.php?id=' + item.id, { responseType: 'text' })
+            if (data.trim() === 'ok') {
+              this.toasty(item.name, 'Ausleihen erfolgreich mitgeteilt')
+              ev.vueTarget.hide()
+            }
+            else {
+              this.toasty('Fehler beim Ausleihen', data || 'leere Antwort', { variant: 'danger' })
+            }
+          }
+          catch (err) {
+            this.toasty('Fehler beim Ausleihen', err.message, { variant: 'danger' })
+          }
+        },
+      },
+    })
+  </script>
+</body>
+</html>
