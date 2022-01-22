@@ -69,6 +69,7 @@
       :sort-by.sync="order"
       :sort-compare="compare"
       striped
+      sort-null-last
       label-sort-asc=""
       label-sort-desc=""
       label-sort-clear=""
@@ -218,7 +219,7 @@
           ausleihen : l[4],
           usk       : l[5],
           pegi      : l[6],
-          rcl       : l[7] || 0,
+          rcl       : l[7],
           avg       : (l[5] + l[6] + (l[7] || 0)) / ( 2 + ( l[7] ? 1 : 0 )),
           empf      : l[9],
           anmerkung : l[10],
