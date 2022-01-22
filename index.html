@@ -241,7 +241,7 @@
           && (f.showPhysical ? true : (o.ort    !== 'Physisch'))
           && (f.showPS4      ? true : (o.system !== 'PS4'))
           && (f.showSwitch   ? true : (o.system !== 'Switch'))
-          && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase())) : true)
+          && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase()) || f.search == o.id) : true)
           && (f.stars <= o.empf)
           && (f.ausleihbar ? o.ausleihen > 0 : true)
         },
