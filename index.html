@@ -69,7 +69,6 @@
       :sort-by.sync="order"
       :sort-compare="compare"
       striped
-      sort-null-last
       label-sort-asc=""
       label-sort-desc=""
       label-sort-clear=""
@@ -209,19 +208,19 @@
           { sortable: true,  key: 'name'      },
           { sortable: false, key: 'image', label: 'Bild' },
           { sortable: true,  key: 'avg',  label: 'Altersfreigabe' },
-          { sortable: true,  key: 'ausleihen', sortDirection: 'desc' },
+          { sortable: true,  key: 'ausleihen', sortDirection: 'asc' },
         ],
         items: csv.map(l => ({
           id        : l[0],
           name      : l[1],
           system    : l[2],
           ort       : l[3],
-          ausleihen : l[4],
+          ausleihen : l[4] || null,
           usk       : l[5],
           pegi      : l[6],
           rcl       : l[7],
           avg       : (l[5] + l[6] + (l[7] || 0)) / ( 2 + ( l[7] ? 1 : 0 )),
-          empf      : l[9],
+          empf      : l[9] || null,
           anmerkung : l[10],
         })),
       } },
@@ -249,8 +248,12 @@
           const c = 120 - (120 * (num / 18))
           return 'hsl(' + c + ', 100%, 50%)'
         },
-        compare(a, b, k) {
-          if (k !== 'avg') { return null }
+        compare(a, b, k, desc) {
+          if (k !== 'avg') {
+            if (a[k] === null && b[k] !== null) { return +1 * (desc ? -1 : 1) }
+            if (a[k] !== null && b[k] === null) { return -1 * (desc ? -1 : 1) }
+            return null
+          }
           const x = Number(a[this.rating] !== undefined ? a[this.rating] : a.avg)
           const y = Number(b[this.rating] !== undefined ? b[this.rating] : b.avg)
           const comp = (x, y) => (x < y ? -1 : (x > y ? +1 : 0))
