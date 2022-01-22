@@ -97,6 +97,10 @@ div.age.avg::after {
   max-width: 450px;
 }
 
+.table > thead > tr > th select.custom-select {
+  width: unset;
+}
+
 img.system { height: 40px !important; }
 img.ort    { height: 40px !important; }
 img.age    { height: 60px !important; }
