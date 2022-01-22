@@ -26,12 +26,17 @@
 
       <!-- PS4 -->
       <b-form-checkbox v-model="filter.showPS4" button button-variant="light">
-        <img :src="'./img/' + 'PS4' + '.png'" title="PS4" class="system"/>
+        <img :src="'./img/PS4.png'" title="PS4" class="system"/>
       </b-form-checkbox>
 
       <!-- Switch -->
       <b-form-checkbox v-model="filter.showSwitch" button button-variant="light">
-        <img :src="'./img/' + 'Switch' + '.png'" title="Switch" class="system"/>
+        <img :src="'./img/Switch.png'" title="Switch" class="system"/>
+      </b-form-checkbox>
+
+      <!-- GameCube -->
+      <b-form-checkbox v-model="filter.showGameCube" button button-variant="light">
+        <img :src="'./img/GameCube.png'" title="GameCube" class="system"/>
       </b-form-checkbox>
 
       <!-- Physisch -->
@@ -89,7 +94,7 @@
       <template #cell(system)=x>
         <div class="system_ort">
           <div><img :src="'./img/' + x.item.system + '.png'" :title="x.item.system" class="system"/></div>
-          <div><img :src="'./img/' + (x.item.system === 'PS4' ? 'CD' : x.item.ort) + '.png'" :title="x.item.ort" class="ort"/></div>
+          <div><img :src="'./img/' + (x.item.system !== 'Switch' ? 'CD' : x.item.ort) + '.png'" :title="x.item.ort" class="ort"/></div>
         </div>
       </template>
 
@@ -185,6 +190,7 @@
           showDigital  : true,
           showPS4      : true,
           showSwitch   : true,
+          showGameCube : true,
           ausleihbar   : false,
         },
         rulesChecked: false,
@@ -240,6 +246,7 @@
           && (f.showPhysical ? true : (o.ort    !== 'Physisch'))
           && (f.showPS4      ? true : (o.system !== 'PS4'))
           && (f.showSwitch   ? true : (o.system !== 'Switch'))
+          && (f.showGameCube ? true : (o.system !== 'GameCube'))
           && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase()) || f.search == o.id) : true)
           && (f.stars <= o.empf)
           && (f.ausleihbar ? o.ausleihen > 0 : true)
