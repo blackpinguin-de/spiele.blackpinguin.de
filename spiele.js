@@ -159,4 +159,6 @@ window.csv = [
 ,[158,"Super Smash Bros Melee","GameCube","Physisch",0,6,3,8,"5,7",2,]
 ,[159,"Metroid Prime","GameCube","Physisch",0,12,12,14,"12,7",0,"Ego-Shooter"]
 ,[160,"Spider-Man","GameCube","Physisch",0,12,7,10,"9,7",0,]
+,[161,"Pokémon Legenden Arceus","Switch","Physisch",53,12,7,10,"9,7",0,"Viel Text, Steuerung schwieriger als in anderen Pokémon Spielen"]
+,[163,"Leisure Suit Larry - Wet Dreams Dry Twice","Switch","Physisch",30,16,16,16,"16,0",0,"Sex"]
 ]
