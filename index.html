@@ -20,7 +20,7 @@
 <body>
   <div id="app">
     <!-- Filter -->
-    <b-form inline class="m-2 no-print">
+    <b-form inline class="m-2 no-print" @submit.prevent>
       <!-- Suche -->
       <b-form-input type="text" v-model="filter.search" placeholder="Suche..."></b-form-input>
 
