@@ -172,4 +172,5 @@ window.csv = [
 ,[172,"Demon Turf","Switch","Physisch",0,12,7,,"9,5",0,]
 ,[173,"Unpacking","Switch","Physisch",0,0,3,,"1,5",0,]
 ,[174,"Star Wars: The Force Unleashed","Switch","Physisch",0,12,16,14,"14,0",1,]
+,[175,"Kao The Kangaroo","Switch","Physisch",35,6,7,,"6,5",0,]
 ]
