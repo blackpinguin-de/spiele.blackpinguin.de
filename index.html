@@ -245,16 +245,32 @@
         },
       },
       watch: {
+        filter: {
+          deep: true,
+          handler() {
+            try {
+              window.localStorage.setItem('filter', JSON.stringify(this.filter))
+            }
+            catch {}
+          },
+        },
         hash() {
           window.history.replaceState('', '/', window.location.pathname + this.hash)
         },
       },
       mounted() {
+        const loadStorage = () => {
+          try {
+            Object.assign(this.filter, JSON.parse(window.localStorage.getItem('filter')))
+          }
+          catch {}
+        }
         const loadHash = () => {
           Object.assign(this.filter, this.unserializeFilters(window.location.hash.substr(1)))
         }
         window.addEventListener('hashchange', loadHash)
         loadHash()
+        loadStorage()
       },
       methods: {
         filterFunction(o, f) {
