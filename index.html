@@ -179,20 +179,21 @@
     </b-table>
   </div>
   <script>
+    const defaultFilters = {
+      age          : 9,
+      stars        : 0,
+      search       : '',
+      showPhysical : true,
+      showDigital  : true,
+      showPS4      : true,
+      showSwitch   : true,
+      showGameCube : true,
+      ausleihbar   : false,
+    }
     new Vue({
       el: '#app',
       data() { return {
-        filter: {
-          age          : 9,
-          stars        : 0,
-          search       : '',
-          showPhysical : true,
-          showDigital  : true,
-          showPS4      : true,
-          showSwitch   : true,
-          showGameCube : true,
-          ausleihbar   : false,
-        },
+        filter: Object.assign({}, defaultFilters),
         rulesChecked: false,
         maxStars: 3,
         ages: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
@@ -232,6 +233,28 @@
       } },
       computed: {
         limit() { return (this.filter.age < 6 ? 6 : (this.filter.age < 12 ? 12 : (this.filter.age < 16 ? 16 : 18))) },
+        hash() {
+          const obj = {}
+          for (const [ k, v ] of Object.entries(this.filter)) {
+            if (v != defaultFilters[k]) {
+              obj[k] = JSON.stringify(this.filter[k])
+            }
+          }
+          const str = new URLSearchParams(obj).toString()
+          return ( str ? '#' + str : '' )
+        },
+      },
+      watch: {
+        hash() {
+          window.history.replaceState('', '/', window.location.pathname + this.hash)
+        },
+      },
+      mounted() {
+        const loadHash = () => {
+          Object.assign(this.filter, this.unserializeFilters(window.location.hash.substr(1)))
+        }
+        window.addEventListener('hashchange', loadHash)
+        loadHash()
       },
       methods: {
         filterFunction(o, f) {
@@ -292,6 +315,17 @@
             this.toasty('Fehler beim Ausleihen', err.message, { variant: 'danger' })
           }
         },
+        unserializeFilters(str) {
+          return Object.assign(
+            {},
+            defaultFilters,
+            decodeURI(str)
+              .split('&')
+              .filter(x => x)
+              .map(s => s.split('='))
+              .reduce((o, [k, v]) => { o[k] = JSON.parse(v) ; return o } , {})
+          )
+        }
       },
     })
   </script>
