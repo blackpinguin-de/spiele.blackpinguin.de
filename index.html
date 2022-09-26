@@ -79,11 +79,12 @@
       label-sort-clear=""
       :filter="filter"
       :filter-function="filterFunction"
+      :tbody-tr-class="(item) => (item.have ? 'have' : 'have-not')"
     >
       <!-- Empfehlung -->
       <template #cell(empf)=x>
         <img v-for="n in x.value" :src="'./img/star.png'" class="star"/>
-        <div class="anmerkung" v-if="x.item.anmerkung">
+        <div class="anmerkung" v-if="(x.item.anmerkung) || (! x.item.have)">
           <span v-b-modal="'name-' + x.item.id">
             <b-icon-info-circle-fill/>
           </span>
@@ -100,14 +101,16 @@
 
       <!-- Name / Logo -->
       <template #cell(name)=x>
-        <img  :src="'./logos/' + x.item.id + '.jpg'"
-              :alt="x.item.name"
-              :title="x.item.name"
-              class="logo"
-              v-b-modal="'name-' + x.item.id"
+        <img
+          :src="'./logos/' + x.item.id + '.jpg'"
+          :alt="x.item.name"
+          :title="x.item.name"
+          class="logo"
+          v-b-modal="'name-' + x.item.id"
         />
         <b-modal :id="'name-' + x.item.id" :title="x.item.name" hide-footer>
-          {{x.item.anmerkung}}
+          <p v-if="! x.item.have">Das Spiel befindet sich noch nicht in meinem Besitz.</p>
+          <p v-if="x.item.anmerkung">{{x.item.anmerkung}}</p>
         </b-modal>
       </template>
 
@@ -146,7 +149,11 @@
 
       <!-- Ausleihen -->
       <template #cell(ausleihen)=x>
-        <b-btn v-if="x.value > 0" v-b-modal="'ausleihen-' + x.item.id">
+        <b-btn
+          v-if="x.value > 0"
+          v-b-modal="'ausleihen-' + x.item.id"
+          :disabled="! x.item.have"
+        >
           ~{{x.value}} €
           <sup><b-icon-info-circle/></sup>
         </b-btn>
@@ -218,7 +225,7 @@
           { sortable: true,  key: 'ausleihen', sortDirection: 'asc' },
         ],
         items: csv.map(l => ({
-          id        : l[0],
+          id        : Math.abs(l[0]),
           name      : l[1],
           system    : l[2],
           ort       : l[3],
@@ -229,6 +236,7 @@
           avg       : (l[5] + l[6] + (l[7] || 0)) / ( 2 + ( l[7] ? 1 : 0 )),
           empf      : l[9] || null,
           anmerkung : l[10],
+          have      : l[0] > 0,
         })),
       } },
       computed: {

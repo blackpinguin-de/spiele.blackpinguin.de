@@ -86,6 +86,10 @@ div.age.avg::after {
   text-align: center;
 }
 
+.table > tbody > tr.have-not {
+  opacity: 0.3;
+}
+
 .table > tbody > tr > td img {
   max-width: 230px;
   max-height: 230px;
@@ -122,5 +126,7 @@ img.star   { height: 30px !important; }
 }
 
 .form-inline .form-group { cursor: pointer; }
+
+.modal-body > :last-child { margin-bottom: 0; }
 
 @media print { .no-print, .no-print * { display: none !important; } }
