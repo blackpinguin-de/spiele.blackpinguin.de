@@ -139,7 +139,7 @@ window.csv = [
 ,[138,"Haven","PS4","Physisch",0,16,12,14,"14,0",0,"Liebe, Sex"]
 ,[-139,"Bloodrayne 1: ReVamped","Switch","Physisch",0,18,18,18,"18,0",0,"Nazis, Gewalt"]
 ,[-140,"Bloodrayne 2: ReVamped","Switch","Physisch",0,18,18,18,"18,0",0,"Nazis, Gewalt"]
-,[141,"Cyanide & Happiness – Freakpocalypse","Switch","Physisch",0,16,16,,"16,0",0,]
+,[141,"Cyanide & Happiness - Freakpocalypse Ep. 1","Switch","Physisch",0,16,16,18,"16,7",0,"Gewalt, Sex, Liebe, Depression, Viel Text (DE), Sprache (EN)"]
 ,[142,"Star Wars: Knights of the Old Republic","Switch","Physisch",0,12,12,14,"12,7",3,]
 ,[143,"Doki Doki Literature Club Plus","Switch","Physisch",40,18,18,18,"18,0",1,"Horror, Suizid, Missbrauch, Depression"]
 ,[144,"Stardew Valley","Switch","Physisch",55,6,12,10,"9,3",2,]
