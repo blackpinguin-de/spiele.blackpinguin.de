@@ -291,7 +291,7 @@
           && (f.age < 12 ? ! [ 55, 78, 96, 103 ].includes(o.id) : true) // VR erst ab 12
           && (f.showDigital  ? true : (o.ort    !== 'Digital'))
           && (f.showPhysical ? true : (o.ort    !== 'Physisch'))
-          && (f.showPS4      ? true : (o.system !== 'PS4'))
+          && (f.showPS4      ? true : (o.system !== 'PS4' && o.system !== 'PS5'))
           && (f.showSwitch   ? true : (o.system !== 'Switch'))
           && (f.showGameCube ? true : (o.system !== 'GameCube'))
           && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase()) || f.search == o.id) : true)
