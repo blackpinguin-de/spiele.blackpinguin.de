@@ -192,4 +192,7 @@ window.csv = [
 ,[-191,"Ankora Lost Days","Switch","Physisch",0,6,7,,"6,5",0,]
 ,[-192,"Deiland","Switch","Physisch",0,6,7,6,"6,3",1,]
 ,[-193,"Raji","Switch","Physisch",0,12,12,10,"11,3",1,"Gewalt ggn. Dämonen"]
+,[-194,"Mika and the Witch's Mountain","Switch","Physisch",0,6,3,,"4,5",0,]
+,[195,"Metroid Prime Remastered","Switch","Physisch",40,12,12,14,"12,7",2,"Ego-Shooter"]
+,[-196,"Tunic","Switch","Physisch",45,6,7,,"6,5",0,"wie Zelda, kein Text"]
 ]
