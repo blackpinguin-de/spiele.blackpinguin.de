@@ -200,4 +200,6 @@ window.csv = [
 ,[199,"Cosmic Express","Switch","Physisch",0,0,3,10,"4,3",0,"Puzzle"]
 ,[200,"Advance Wars 1 & 2 Re-Boot Camp","Switch","Physisch",60,6,7,8,"7,0",2,"Krieg, Strategie"]
 ,[-201,"Shady Part of Me","Switch","Physisch",0,6,7,,"6,5",0,]
+,[202,"Bayonetta Origins: Cereza and the Lost Demon","Switch","Physisch",40,12,12,,"12,0",0,]
+,[-203,"Koa and the Five Pirates of Mara","Switch","Physisch",0,6,3,,"4,5",0,]
 ]
