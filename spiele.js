@@ -202,4 +202,7 @@ window.csv = [
 ,[-201,"Shady Part of Me","Switch","Physisch",0,6,7,,"6,5",0,]
 ,[202,"Bayonetta Origins: Cereza and the Lost Demon","Switch","Physisch",40,12,12,,"12,0",0,]
 ,[-203,"Koa and the Five Pirates of Mara","Switch","Physisch",0,6,3,,"4,5",0,]
+,[204,"A Way Out","PS4","Physisch",0,18,18,,"18,0",0,]
+,[205,"Wavetale","Switch","Physisch",0,12,7,,"9,5",0,]
+,[-206,"QUBE","Switch","Physisch",0,0,3,,"1,5",0,"Puzzle"]
 ]
