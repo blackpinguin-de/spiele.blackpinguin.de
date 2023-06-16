@@ -59,7 +59,7 @@ window.csv = [
 ,[58,"Minecraft Dungeons","Switch","Digital",0,12,7,8,"9,0",1,]
 ,[59,"Solo: Islands of the Heart","Switch","Digital",0,6,12,10,"9,3",0,"Liebe, Puzzle"]
 ,[60,"Safety First!","Switch","Digital",0,6,12,10,"9,3",0,"Geschicklichkeit"]
-,[61,"QUBE 2","Switch","Physisch",0,6,12,10,"9,3",0,]
+,[61,"QUBE 2","Switch","Physisch",0,6,12,10,"9,3",0,"Puzzle"]
 ,[62,"Rogue Singularity","Switch","Digital",0,12,7,,"9,5",0,]
 ,[63,"Riptide GP: Renegade","Switch","Digital",0,12,7,10,"9,7",1,"Schnell, illegale Rennen"]
 ,[64,"Begrabe mich, mein Schatz","Switch","Digital",0,12,7,10,"9,7",0,"Immigration, viel Text"]
