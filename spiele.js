@@ -206,4 +206,7 @@ window.csv = [
 ,[205,"Wavetale","Switch","Physisch",0,12,7,8,"9,0",0,]
 ,[-206,"QUBE","Switch","Physisch",0,0,3,,"1,5",0,"Puzzle"]
 ,[207,"Zelda - Tears of the Kingdom","Switch","Physisch",60,12,12,,"12,0",0,]
+,[208,"Gothic","Switch","Digital",0,12,16,12,"13,3",3,]
+,[209,"Gothic","Switch","Physisch",30,12,16,12,"13,3",3,]
+,[210,"Immortals Fenyx Rising","PS4","Physisch",20,12,12,,"12,0",0,]
 ]
