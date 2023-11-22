@@ -215,4 +215,5 @@ window.csv = [
 ,[214,"Portal 2","Switch","Digital",0,12,12,10,"11,3",2,]
 ,[215,"Baba Is You","Switch","Physisch",40,0,3,,"1,5",0,]
 ,[216,"Gothic 2","Switch","Physisch",30,12,16,14,"14,0",3,]
+,[217,"Sayonara Wild Hearts","Switch","Physisch",35,6,12,,"9,0",0,]
 ]
