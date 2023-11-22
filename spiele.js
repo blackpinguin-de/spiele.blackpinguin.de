@@ -211,4 +211,8 @@ window.csv = [
 ,[210,"Immortals Fenyx Rising","PS4","Physisch",20,12,12,,"12,0",0,]
 ,[211,"Star Wars Jedi: Survivor","PS5","Physisch",80,16,12,,"14,0",0,]
 ,[212,"Uncharted Legacy of Thieves Collection","PS5","Physisch",50,16,16,,"16,0",0,]
+,[213,"Portal 1","Switch","Digital",0,12,12,8,"10,7",3,]
+,[214,"Portal 2","Switch","Digital",0,12,12,10,"11,3",2,]
+,[215,"Baba Is You","Switch","Physisch",40,0,3,,"1,5",0,]
+,[216,"Gothic 2","Switch","Physisch",30,12,16,14,"14,0",3,]
 ]
