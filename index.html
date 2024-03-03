@@ -85,7 +85,7 @@
       <!-- Empfehlung -->
       <template #cell(empf)=x>
         <img v-for="n in x.value" :src="'./img/star.png'" class="star"/>
-        <div class="anmerkung" v-if="(x.item.anmerkung) || (! x.item.have)">
+        <div class="anmerkung no-print" v-if="(x.item.anmerkung) || (! x.item.have)">
           <span v-b-modal="'name-' + x.item.id">
             <b-icon-info-circle-fill/>
           </span>
@@ -156,7 +156,7 @@
           :disabled="! x.item.have"
         >
           ~{{x.value}} €
-          <sup><b-icon-info-circle/></sup>
+          <sup class="no-print"><b-icon-info-circle/></sup>
         </b-btn>
 
         <b-modal
@@ -186,7 +186,7 @@
       </template>
     </b-table>
 
-    <div style="text-align: center;">{{ count }} Spiele gefunden</div>
+    <div class="no-print" style="text-align: center;">{{ count }} Spiele gefunden</div>
   </div>
   <script>
     const defaultFilters = {
