@@ -129,4 +129,10 @@ img.star   { height: 30px !important; }
 
 .modal-body > :last-child { margin-bottom: 0; }
 
-@media print { .no-print, .no-print * { display: none !important; } }
+@media print {
+  .no-print, .no-print * { display: none !important; }
+
+  .table > tbody > tr.have-not {
+    opacity: 1.0;
+  }
+ }
