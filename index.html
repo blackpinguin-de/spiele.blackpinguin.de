@@ -318,7 +318,7 @@
           const x = Number(a[this.rating] !== undefined ? a[this.rating] : a.avg)
           const y = Number(b[this.rating] !== undefined ? b[this.rating] : b.avg)
           const comp = (x, y) => (x < y ? -1 : (x > y ? +1 : 0))
-          return comp(x, y) || comp(a.avg, b.avg)
+          return comp(x, y) || comp(a.avg, b.avg) || comp(a.name, b.name) || comp(a.id, b.id)
         },
         toasty(title, msg, opts = {}) {
           this.$bvToast.toast(msg, {
