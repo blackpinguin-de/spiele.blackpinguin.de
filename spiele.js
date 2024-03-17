@@ -229,4 +229,6 @@ window.csv = [
 ,[228,"Warframe [Free]","Switch","Digital",0,16,18,16,"16,7",0,]
 ,[229,"Dauntless[Free]","Switch","Digital",0,12,12,14,"12,7",0,]
 ,[230,"Fortnite [Free]","Switch","Digital",0,12,12,14,"12,7",0,]
+,[-231,"Dorfromantik","Switch","Physisch",0,0,3,,"1,5",0,]
+,[-232,"Pentiment","Switch","Physisch",0,12,16,,"14,0",0,]
 ]
