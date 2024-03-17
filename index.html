@@ -193,6 +193,7 @@
       age          : 10,
       stars        : 0,
       search       : '',
+      id           : null,
       showPhysical : true,
       showDigital  : true,
       showPS4      : true,
@@ -253,7 +254,7 @@
             }
           }
           const str = new URLSearchParams(obj).toString()
-          return ( str ? '#' + str : '' )
+          return ( str ? '#' + decodeURIComponent(str) : '' )
         },
       },
       watch: {
@@ -301,6 +302,7 @@
           && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase()) || f.search == o.id) : true)
           && (f.stars <= o.empf)
           && (f.ausleihbar ? o.ausleihen > 0 : true)
+          && (f.id ? (Array.isArray(f.id) ? f.id.includes(o.id) : f.id === o.id ) : true)
         },
         filtered(items) {
           this.count = items.length
