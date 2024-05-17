@@ -231,4 +231,8 @@ window.csv = [
 ,[230,"Fortnite [Free]","Switch","Digital",0,12,12,14,"12,7",0,]
 ,[-231,"Dorfromantik","Switch","Physisch",0,0,3,,"1,5",0,]
 ,[-232,"Pentiment","Switch","Physisch",0,12,16,,"14,0",0,]
+,[233,"Risen","Switch","Physisch",30,12,16,14,"14,0",0,]
+,[234,"Ratchet & Clank: Rift Apart","PS5","Physisch",40,12,7,,"9,5",0,]
+,[-235,"Wargroove 1","Switch","Physisch",0,6,7,,"6,5",0,]
+,[-236,"Wargroove 2","Switch","Physisch",0,12,7,,"9,5",0,]
 ]
