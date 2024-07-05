@@ -238,4 +238,6 @@ window.csv = [
 ,[-237,"Tomb Raider 1-3 Remastered","Switch","Physisch",0,16,16,,"16,0",0,]
 ,[-238,"The Lara Croft Collection","Switch","Physisch",0,12,12,,"12,0",0,]
 ,[-239,"Animal Well","Switch","Physisch",0,6,7,,"6,5",0,]
+,[240,"Pikmin 1","Switch","Physisch",40,6,3,,"4,5",0,]
+,[241,"Pikmin 2","Switch","Physisch",40,6,3,,"4,5",0,]
 ]
