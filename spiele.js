@@ -240,4 +240,8 @@ window.csv = [
 ,[-239,"Animal Well","Switch","Physisch",0,6,7,,"6,5",0,]
 ,[240,"Pikmin 1","Switch","Physisch",40,6,3,,"4,5",0,]
 ,[241,"Pikmin 2","Switch","Physisch",40,6,3,,"4,5",0,]
+,[-242,"Dark Forces","Switch","Physisch",0,12,12,8,"10,7",0,]
+,[-243,"Beyond Good & Evil","Switch","Physisch",0,12,12,,"12,0",0,]
+,[-244,"Zelda - Echoes of Wisdom","Switch","Physisch",60,6,7,,"6,5",0,]
+,[-245,"Astro Bot","PS5","Physisch",70,6,7,,"6,5",0,]
 ]
