@@ -1,0 +1,77 @@
+name: gh-pages
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch: # or manual
+
+permissions:
+  contents : read
+  pages    : write
+  id-token : write
+
+concurrency:
+  group              : ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress : true
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name : Checkout
+      uses : actions/checkout@v4
+    -
+      name : Install node 20
+      uses : actions/setup-node@v4
+      with :
+        node-version : 20
+        cache        : 'npm'
+    -
+      name : Install node_modules
+      run  : npm ci
+    -
+      name : Build artifacts
+      run  : |
+        tar                                   \
+          --create                            \
+          --dereference                       \
+          --hard-dereference                  \
+          --verbose                           \
+          --file=./artifact.tar               \
+          ./img/                              \
+          ./logos/                            \
+          ./node_modules/axios/dist/          \
+          ./node_modules/bootstrap/dist/      \
+          ./node_modules/bootstrap-vue/dist/  \
+          ./node_modules/jquery/dist/         \
+          ./node_modules/vue/dist/            \
+          ./screens/                          \
+          ./index.html                        \
+          ./spiele.js                         \
+          ./style.css                         \
+        ;
+    -
+      name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name              : github-pages
+        path              : artifact.tar
+        if-no-files-found : error
+
+  deploy:
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    -
+      name : Deploy artifacts to GitHub pages
+      uses : actions/deploy-pages@v4
+      id   : deployment
