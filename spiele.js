@@ -244,6 +244,6 @@ window.csv = [
 ,[-243,"Beyond Good & Evil","Switch","Physisch",0,12,12,,"12,0",0,]
 ,[244,"Zelda - Echoes of Wisdom","Switch","Physisch",50,6,7,8,"7,0",1,]
 ,[245,"Astro Bot","PS5","Physisch",60,6,7,6,"6,3",2,]
-,[-246,"Smushi Come Home","Switch","Physisch",0,0,3,,"1,5",0,]
+,[246,"Smushi Come Home","Switch","Physisch",0,0,3,4,"2,3",1,]
 ,[-247,"Star Wars: Bounty Hunter","Switch","Physisch",0,12,16,12,"13,3",0,]
 ]
