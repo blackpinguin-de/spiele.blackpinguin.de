@@ -249,4 +249,7 @@ window.csv = [
 ,[248,"Pikmin 4","Switch","Physisch",50,6,3,,"4,5",0,]
 ,[249,"Luigi's Mansion 2 HD","Switch","Physisch",50,6,7,,"6,5",0,]
 ,[250,"Cocoon","Switch","Physisch",30,6,7,10,"7,7",0,]
+,[251,"FAR: Lone Sails","Switch","Digital",0,6,7,,"6,5",0,]
+,[-252,"A Highland Saga","Switch","Physisch",0,0,12,,"6,0",0,]
+,[-253,"Planet of Lana","Switch","Physisch",0,6,12,,"9,0",0,]
 ]
