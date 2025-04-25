@@ -248,5 +248,5 @@ window.csv = [
 ,[247,"Star Wars: Bounty Hunter","Switch","Physisch",0,12,16,12,"13,3",0,]
 ,[248,"Pikmin 4","Switch","Physisch",50,6,3,,"4,5",0,]
 ,[249,"Luigi's Mansion 2 HD","Switch","Physisch",50,6,7,,"6,5",0,]
-,[250,"Cocoon","Switch","Physisch",30,6,7,,"6,5",0,]
+,[250,"Cocoon","Switch","Physisch",30,6,7,10,"7,7",0,]
 ]
