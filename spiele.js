@@ -252,4 +252,7 @@ window.csv = [
 ,[251,"FAR: Lone Sails","Switch","Digital",0,6,7,,"6,5",0,]
 ,[-252,"A Highland Saga","Switch","Physisch",0,0,12,,"6,0",0,]
 ,[-253,"Planet of Lana","Switch","Physisch",0,6,12,,"9,0",0,]
+,[254,"The Stanley Parable: Ultra Deluxe","Switch","Physisch",20,12,12,,"12,0",0,]
+,[255,"Yoshi's Crafted World","Switch","Physisch",50,6,3,,"4,5",0,]
+,[-256,"Tomb Raider 4-6 Remastered","Switch","Physisch",0,12,16,,"14,0",0,]
 ]
