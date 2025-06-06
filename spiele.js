@@ -255,4 +255,7 @@ window.csv = [
 ,[254,"The Stanley Parable: Ultra Deluxe","Switch","Physisch",20,12,12,,"12,0",0,]
 ,[255,"Yoshi's Crafted World","Switch","Physisch",50,6,3,,"4,5",0,]
 ,[-256,"Tomb Raider 4-6 Remastered","Switch","Physisch",0,12,16,,"14,0",0,]
+,[-257,"Mario Kart World","Switch 2","Physisch",0,0,3,,"1,5",0,]
+,[-258,"Donkey Kong Bananza","Switch 2","Physisch",0,6,7,,"6,5",0,]
+,[259,"Fast Fusion","Switch 2","Digital",0,0,3,,"1,5",0,]
 ]
