@@ -169,7 +169,7 @@
           @ok="rent($event, x.item)"
           @show="rulesChecked = false"
         >
-          <ol>
+          <ol class="pl-3">
             <li>Es darf nur ein Spiel gleichzeitig ausgeliehen werden.</li>
             <li>Nur verfügbare Spiele, die man noch neu kaufen kann, dürfen ausgeliehen werden.</li>
             <li>Bei Verlust oder Beschädigung ist der momentane Neu-Marktwert an mich zu zahlen (vermutlich etwa <code>{{x.value}} €</code> für <code>{{x.item.name}}</code>).</li>
@@ -182,6 +182,31 @@
               Ich bin mit den Regeln einverstanden
             </b-form-checkbox>
           </b-alert-show>
+        </b-modal>
+
+        <b-btn
+          v-if="x.value <= 0 && [ 'Switch', 'Switch 2' ].includes(x.item.system) && x.item.ort == 'Digital'"
+          v-b-modal="'ausleihen-' + x.item.id"
+          :disabled="! x.item.have"
+        >
+          Virtuell
+          <sup class="no-print"><b-icon-info-circle/></sup>
+        </b-btn>
+
+        <b-modal
+          v-if="x.value <= 0 && [ 'Switch', 'Switch 2' ].includes(x.item.system) && x.item.ort == 'Digital'"
+          :id="'ausleihen-' + x.item.id"
+          title="Digitales Spiel ausleihen"
+          ok-only
+          ok-title="Ausleihen"
+          @ok="rent($event, x.item)"
+          @show="rulesChecked = false"
+        >
+          <ul class="pl-3">
+            <li>Digitale Switch Spiele können als Virtuelle Speicherkarte für bis zu 2 Wochen verliehen werden.</li>
+            <li>Nach Ablauf der 2 Wochen wird das Spiel automatisch zurückgegeben.</li>
+            <li>Pro Benutzer kann nur ein Spiel gleichzeitig ausgeliehen werden.</li>
+          </ul>
         </b-modal>
       </template>
     </b-table>
@@ -301,7 +326,7 @@
           && (f.showGameCube ? true : (o.system !== 'GameCube'))
           && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase()) || f.search == o.id) : true)
           && (f.stars <= o.empf)
-          && (f.ausleihbar ? o.ausleihen > 0 : true)
+          && (f.ausleihbar ? ((o.ausleihen > 0) || ([ 'Switch', 'Switch 2' ].includes(o.system) && o.ort == 'Digital')) : true)
           && (f.id ? (Array.isArray(f.id) ? f.id.includes(o.id) : f.id === o.id ) : true)
         },
         filtered(items) {
