@@ -185,7 +185,7 @@
         </b-modal>
 
         <b-btn
-          v-if="x.value <= 0 && [ 'Switch', 'Switch 2' ].includes(x.item.system) && x.item.ort == 'Digital'"
+          v-if="x.value <= 0 && [ 'Switch', 'Switch 2' ].includes(x.item.system) && x.item.ort === 'Digital'"
           v-b-modal="'ausleihen-' + x.item.id"
           :disabled="! x.item.have"
         >
@@ -194,7 +194,7 @@
         </b-btn>
 
         <b-modal
-          v-if="x.value <= 0 && [ 'Switch', 'Switch 2' ].includes(x.item.system) && x.item.ort == 'Digital'"
+          v-if="x.value <= 0 && [ 'Switch', 'Switch 2' ].includes(x.item.system) && x.item.ort === 'Digital'"
           :id="'ausleihen-' + x.item.id"
           title="Digitales Spiel ausleihen"
           ok-only
@@ -326,7 +326,7 @@
           && (f.showGameCube ? true : (o.system !== 'GameCube'))
           && (f.search       ? (o.name.toLowerCase().includes(f.search.toLowerCase()) || f.search == o.id) : true)
           && (f.stars <= o.empf)
-          && (f.ausleihbar ? ((o.ausleihen > 0) || ([ 'Switch', 'Switch 2' ].includes(o.system) && o.ort == 'Digital')) : true)
+          && (f.ausleihbar ? ((o.ausleihen > 0) || ([ 'Switch', 'Switch 2' ].includes(o.system) && o.ort === 'Digital')) : true)
           && (f.id ? (Array.isArray(f.id) ? f.id.includes(o.id) : f.id === o.id ) : true)
         },
         filtered(items) {
