@@ -265,4 +265,7 @@ window.csv = [
 ,[264,"Selfloss","Switch","Physisch",35,12,12,,"12,0",0,]
 ,[265,"Spirit of the North","Switch","Physisch",25,6,7,,"6,5",0,]
 ,[266,"The Pathless","Switch","Physisch",40,12,12,,"12,0",0,]
+,[-267,"Gris","Switch","Physisch",40,6,7,6,"6,3",0,]
+,[-268,"World of Goo 2","Switch","Physisch",30,6,7,,"6,5",0,]
+,[-269,"Neverwinter Nights","Switch","Physisch",30,12,16,14,"14,0",0,]
 ]
